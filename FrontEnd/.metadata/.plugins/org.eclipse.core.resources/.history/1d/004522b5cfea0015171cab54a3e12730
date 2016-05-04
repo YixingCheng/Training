@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="js/jquery-1.12.0.min.js"></script>
+<script>
+	$(document).ready(function(event) {
+		$("div.grid").click(function(event) {
+			console.log(event.target);
+			var index = $(event.target).index();
+			console.log("Index: " + index);
+			$("div.grid").eq(index).addClass("fill");
+		});
+		
+		//$("#mybtn").click(function() {
+		//	console.log("Background: " + $("tr:odd").css("background-color"));
+		//	$("tr:odd").css("background-color", "#CCC");
+		//});
+		
+		$("#state").find("option[value='MD']").attr("selected", true);
+	});
+	
+	$(document).ready(function() {
+		$("div.grid").click(function(event) {
+			console.log(event.target);
+			var index = $(event.target).index();
+		});
+	});
+</script>
+<style>
+ .grid{
+ 	display: inline-block;
+ 	width: 100px;
+ 	height: 100px;
+ 	margin: 10px;
+ 	border: 1px solid red;
+ }
+ .fill{
+ 	background-color: green;
+ }
+ tr:nth-child(even){
+ 	background-color: #CCC;
+ }
+ tr:nth-child(odd){
+ 	background-color: #BBB;
+ }
+ 
+</style> 
+</head>
+
+<body>
+<h1>More Complex Selectors</h1>
+<div>
+	<div class="grid"></div>
+	<div class="grid"></div>
+	<div class="grid"></div>
+	<div class="grid"></div>
+	<div class="grid"></div>
+	<div class="grid"></div>
+	<div class="grid"></div>
+	<div class="grid"></div>
+	<div class="grid"></div>
+</div>
+<hr>
+<table style="width:200px" border="1">
+	<tr>
+		<th>Name</th>
+		<th>Age</th>
+	</tr>
+	<tr>
+		<td>Bob</td>
+		<td>15</td>
+	</tr>
+	<tr>
+		<td>Alice</td>
+		<td>25</td>
+	</tr>
+	<tr>
+		<td>Tom</td>
+		<td>31</td>
+	</tr>
+	<tr>
+		<td>Geroge</td>
+		<td>59</td>
+	</tr>
+</table>
+<br />
+<button id="mybtn">Click</button>
+<br />
+<div>
+	Select a State:
+	<select id="state">
+		<option value-""></option>
+		<option value="NJ">New Jersey</option>
+		<option value="NY">New York</option>
+		<option value="MD">Maryland</option>
+		<option value="VA">Virginia</option>
+	</select>
+</div>
+</body>
+</html>

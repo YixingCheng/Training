@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Demo01</title>
+<script src="js/qunit-1.20.0.js"></script>
+<link rel="stylesheet" href="css/qunit-1.20.0.css" type="text/css">
+<script>
+    var MyClass = function() {
+        var x = 10;                           //x is a local variable
+        this.str = "abc";                       // str is a memeber variable
+        var that = this;
+        var foo = function(){                   //foo is a local function
+            console.log(x);                     //10
+            console.log(this.str);              //undefined   //may be equals to window.str`
+            console.log(that.str);              //abc
+        };
+        foo();
+        this.goo = function(){                  //goo is a member function
+            console.log(x);                     //10
+            console.log(this.str);              // abc
+        };
+
+    }
+
+    test("Test constructor in deep", function(){
+        var mc = new MyClass();
+        mc.goo();
+       equal("abc", mc.str, "mc's str is abc"); 
+            
+    });
+
+    var Person = function(name){
+        if (typeof name !=="undefined"){                    //why use !== here
+            this.name = name;
+        } else{
+            this.name = "default";
+        }
+    }
+
+    var Person2 = function(name) {
+        if (typeof name!="undefined"){
+            this.name = name;
+        }
+    }
+
+    Person2.prototype.name = "default";
+
+    test("Test prototype in deep", function(){
+        var p1 = new Person();
+        var p2 = new Person("Alice");
+        equal("default", p1.name, "p1's name is default");
+        equal("Alice", p2.name, "p2's name is Alice");
+        delete p2.name;
+        equal(undefined, p2.name, "P1's name is undefined");
+        var q1 = new Person2();
+        var q2 = new Person2("Bob");
+        equal("default", q1.name, "q1's name is default");
+        equal("Bob", q2.name, "q2's name is Bob");
+        delete q2.name;
+        equal("default", q2.name, "q2's name is default");
+
+    });
+
+</script>
+</head>
+<body>
+<h1 id="qunit-header">Qunit Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+</body>
+</html>

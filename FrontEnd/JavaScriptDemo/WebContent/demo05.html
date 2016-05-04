@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Demo01</title>
+<script src="js/qunit-1.20.0.js"></script>
+<link rel="stylesheet" href="css/qunit-1.20.0.css" type="text/css">
+<script>
+    test("Test Hoisting feature", function(){
+        equal(undefined, x, "x is undefined at this time");
+        equal(undefined, y, "y is undefined at this time");
+        for(var x = 1; x<10; x++){
+            for(var y=1; y<5; y++){
+                //do someting
+            }
+        }        
+        equal(10, x, "x is 10");
+        equal(5, y, "y is 5");
+        equal(hello, foo(), "Error: function does not have hoisting feature");
+        var foo = function(){
+            return "foo";
+        }    
+        equal("foo", foo(), "foo method returns foo now");
+    });
+</script>
+</head>
+
+<body>
+<h1 id="qunit-header">Qunit Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+</body>
+</html>

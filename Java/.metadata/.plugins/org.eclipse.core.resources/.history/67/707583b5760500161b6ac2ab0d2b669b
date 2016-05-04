@@ -1,0 +1,8 @@
+package com.mercury.code;
+
+public class PrivateConstructor {
+	private PrivateConstructor(){}
+	
+	public abstract int sum(){};
+	public abstract int multiply();
+}

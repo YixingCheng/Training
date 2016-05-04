@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The contents of this file will be loaded for each web application --><Context>
+
+    <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" 
+    maxIdle="10" maxWait="-1" name="jdbc/myoracle" password="123456Cyx" 
+    type="javax.sql.DataSource" url="jdbc:oracle:thin:@Ethan5558:1521:XE" username="JavaMercury"/>
+
+</Context>

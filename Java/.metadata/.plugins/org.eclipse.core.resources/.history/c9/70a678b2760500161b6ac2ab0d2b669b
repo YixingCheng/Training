@@ -1,0 +1,5 @@
+package com.mercury.code;
+
+public class PrivateConstructor {
+
+}

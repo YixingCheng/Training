@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Angular Demo07</title>
+<script src="js/angular.min.js"></script>
+<script>
+	var app = angular.module("mainApp", []);
+	
+	var MyService = function() {
+		var message = "This is a service";
+		console.log("Create an instance of MyService");
+		this.getMessage = function() {
+			return message;
+		};
+		this.setMessage = function() {
+			message = msg;
+		};
+	};
+	
+	app.controller("mainCtrl", function($scope, $myService, $myFactory, $myProvider) {
+		$scope.serviceMsg = $myService.getMessage();
+		$scope.factoryMsg = $myFactory.getMessage();
+		$scope.providerMsg = $myProvider.getMessage();
+	});
+	
+	app.service("$myService", MyService);
+	
+	
+	//app.service("$myService", MyService);
+	
+	var MyFactory = function(){
+		var message = "This is a factory";
+		var service ={};
+		service.getMessage = function(){
+			return message;
+		}
+		service.setMessage = function() {
+			message = msg;
+		}
+		return service;
+	};
+	
+	var MyFactory = function() {
+		var message = "This is a factory";
+		var service = {};
+		service.getMessage = function(){
+			return message;
+		};
+		service.setMessage = function(){
+			message = msg;
+		}
+		return service;
+	};
+
+	app.factory("$myFactory", MyFactory);
+	
+	var MyProvider = function() {
+		this.message = "This is a provider";
+		this.decorator = "*";
+		this.$get = function() {
+			var that = this;
+			return {
+				getMessage: function() {
+					return that.decorator+ that.message + that.decorator;
+				},
+				setMessage: function(msg){
+					this.message = msg;
+				}
+			};
+		}
+	};
+	
+	app.provider("$myProvider", MyProvider);
+	app.config(function($myProviderProvider) {
+		$myProviderProvider.decorator = "^";
+	});
+	
+	
+	
+	app.service("$myService2", MyService);
+	app.controller("secondCtrl", function($scope, $myService2) {
+		$scope.anotherService = $myService2.getMessage();
+	});
+</script>
+<style>
+	h2{
+		color:green;
+	}
+</style>
+</head>
+<body ng-app="mainApp">
+<h1>Demo07: Service, Factory and Provider</h1>
+<hr>
+<div ng-controller="mainCtrl">
+	<h2>Service Demo</h2>
+	<p>Service Message: {{serviceMsg}}</p>
+	<h2>Factrory Demo</h2>
+	<p>Factory Message: {{factoryMsg}}</p>
+	<h2>Provider Demo</h2>
+	<p>Provider Message: {{providerMsg}}</p>
+</div>
+<div ng-controller="secondCtrl">
+	<h2>Another service</h2>
+	<p>Service Message: {{anotherService}}</p>
+</div>
+</body>
+</html>

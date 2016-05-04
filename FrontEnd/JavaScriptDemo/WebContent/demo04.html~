@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Demo01</title>
+<script src="js/qunit-1.20.0.js"></script>
+<link rel="stylesheet" href="css/qunit-1.20.0.css" type="text/css">
+<script>
+    var Parent = function(){
+        this.name = "Parent";
+        this.hello = function(){
+            return "hello";
+        }
+    };
+
+    var Child = function() {}
+
+    Child.prototype = new Parent();
+
+    test("Test Inheritance", function(){
+        var child = new Child();
+        ok(child instanceof Child, "child is an instance of Child");
+        ok(child instanceof Parent, "child is an instance of Parent");
+        ok(child instanceof Object, "child is an instance of Object");
+        equal("Parent", child.name, "child's name is Parent");
+        equal("hello", child.hello(), "child's hello method return hello");
+        child.name = "Child";
+        equal("Child", child.name, "Child's name is Child");
+        var child2 = new Child();
+        equal("Parent", child2.name, "child2's name is Parent");
+        Child.prototype.name = "Child";
+        equal("Child", child2.name, "Child2's name is Child");
+        Child.prototype.hello = function(){
+            return "hello child";
+        }
+        equal("hello child", child2.hello(), "child2's hello method return hello world");
+        Parent.prototype.message = {
+            msg: "Message"
+        };
+            
+        equal("Message", child.message.msg, "child inheritance message");
+        equal("Message", child2.message.msg, "child inheritance message");
+
+    });    
+
+    var Sub = function(){}
+    Sub.prototype = {
+            name: "Sub",
+            message: {
+                msg: "Message"
+            }
+    };
+
+    test("Test Inheritance Advanced", function(){
+        var sub = new Sub(); 
+        equal("Sub", sub.name, "sub's name is Sub");
+        equal("Message", sub.message.msg, "sub's message's msg is Message");
+        sub.name = "Alice";
+        equal("Alice", sub.name, "sub's name is Alice");
+        sub.message.msg = "New Message";
+        var sub2 = new Sub();
+        equal("Sub", sub2.name, "sub2's name is still Sub");
+        equal("New Message", sub2.message.msg, "sub2's message's msg is New Message");
+    });
+
+    test("Test prototype chain", function(){
+         var str = "abc";
+         equal("abc", str, "str is abc");
+        equal(undefined, str.x, "str does not have x");
+        String.prototype.x = 10;
+        equal(10, str.x, "str's x is 10");
+        Object.prototype.hello=function(){
+            return "hello";
+        };
+        equal("hello", str.hello(), "str has hello method");    
+    });
+
+</script>
+</head>
+<body>
+<h1 id="qunit-header">Qunit Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+</body>
+</html>

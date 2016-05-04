@@ -1,0 +1,25 @@
+package com.mercury.code;
+
+public class Base {
+	
+	//
+	/*int x =3;
+	private void foo(){
+		System.out.println(x + "in Base");
+	}
+	
+	public void process() throws Exception{
+		throw new Exception();
+	}
+	
+	public Base(){
+		foo();
+	}*/
+	
+	//161 of 600
+	static int value = 0;
+	Base() { addValue(); }
+	static void addValue() { value += 10; }
+	int getValue() { return value; }
+	
+}

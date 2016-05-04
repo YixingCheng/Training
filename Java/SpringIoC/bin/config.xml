@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> 
+	
+	<bean id="house" class="com.mercury.beans.Address">
+		<property name="city" value="Plainsboro"/>
+		<property name="state" value="NJ"/>
+		<property name="zipCode" value="08536"/>
+	</bean>
+	
+	<bean id="apt" class="com.mercury.beans.Apartment" parent="house">
+		<property name="aptNo" value="615"/>
+	</bean>
+	
+	<bean id="guestHouse" parent="house">
+		<property name="street" value="Quail Ridge Rd"/>
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+	
+	<bean id="emp" class="com.mercury.beans.Employee">
+		<property name="id" value="100"/>
+		<property name="name" value="Alice"/>
+	</bean>
+	<!-- <bean id="ms" class="com.mercury.beans.MySingle" scope="prototype" factory-method="getInstance"/> -->
+	<bean id="ms" class="com.mercury.beans.MySingle" factory-method="getInstance"/>
+	
+	<bean id="lazyBean" class="com.mercury.beans.LazyBean" lazy-init="true"/>
+</beans>

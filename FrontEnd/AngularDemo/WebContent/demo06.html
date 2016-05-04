@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Angular Demo06</title>
+<script src="js/angular.min.js"></script>
+<script>
+	var app = angular.module("mainApp", []);
+	app.controller("parentCtrl", function($scope) {
+		$scope.a = 1;
+		$scope.$watch("a", function(newVal, oldVal) {
+			console.log("a: ", newVal, oldVal);
+		});
+	});
+	app.controller("childCtrl", function($scope) {
+		$scope.b = 10;
+		$scope.$watch("b", function(newVal, oldVal) {
+			console.log("b: ", newVal, oldVal);
+		});
+	});
+	app.directive("increasea", function() {
+		return function(scope, element, attr) {
+			element.on("click", function() {
+				scope.a++;
+				console.log("a in the event: " + scope.a);
+				scope.$digest();
+			});
+		};
+	});
+	app.directive("increaseb", function() {
+		return function(scope, element, attr) {
+			element.on("click", function() {
+				scope.b++;
+				console.log("b in the event: " + scope.b);
+				//scope.$digest();
+				scope.$apply();
+			})
+		};
+	});
+</script>
+</head>
+<body ng-app="mainApp">
+	<h1>Demo06: Angular $digest and $apply</h1>
+	<hr>
+	<div ng-controller="parentCtrl">
+		<button increasea>Increase A</button>
+		<p>a's value: {{a}}</p>
+		<div ng-controller="childCtrl">
+			<button increaseb>Increase B</button>
+			<p>b's value: {{b}}</p>
+		</div>
+	</div>
+</body>
+</html>

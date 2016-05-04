@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;Struts2Demo&apos;&#x0D;&#x0A;- Original project: &apos;Struts2Demo&apos;&#x0D;&#x0A;- Original element: &apos;Struts2Demo/src/com.mercury.dao.impl&apos;" description="Delete element" element1="/src&lt;com.mercury.dao.impl" element2="/src&lt;com.mercury.dao" elements="2" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1456327456854" subPackages="false" version="1.0"/>
+</session>

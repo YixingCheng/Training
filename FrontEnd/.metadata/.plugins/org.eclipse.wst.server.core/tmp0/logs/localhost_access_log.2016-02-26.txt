@@ -1,0 +1,12 @@
+127.0.0.1 - - [26/Feb/2016:00:05:28 -0500] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [26/Feb/2016:00:05:29 -0500] "GET /AngularDemo/demo01.html HTTP/1.1" 200 3100
+0:0:0:0:0:0:0:1 - - [26/Feb/2016:00:05:29 -0500] "GET /AngularDemo/js/angular.min.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [26/Feb/2016:00:29:13 -0500] "GET /AngularDemo/demo02.html HTTP/1.1" 200 1825
+0:0:0:0:0:0:0:1 - - [26/Feb/2016:00:29:13 -0500] "GET /AngularDemo/html/temp1.html HTTP/1.1" 200 190
+0:0:0:0:0:0:0:1 - - [26/Feb/2016:00:47:47 -0500] "GET /AngularDemo/demo04.html HTTP/1.1" 200 2146
+0:0:0:0:0:0:0:1 - - [26/Feb/2016:00:47:47 -0500] "GET /AngularDemo/html/element.html HTTP/1.1" 200 73
+0:0:0:0:0:0:0:1 - - [26/Feb/2016:00:47:47 -0500] "GET /AngularDemo/html/temp2.html HTTP/1.1" 200 279
+0:0:0:0:0:0:0:1 - - [26/Feb/2016:01:05:30 -0500] "GET /AngularDemo/demo04.html HTTP/1.1" 200 2144
+0:0:0:0:0:0:0:1 - - [26/Feb/2016:01:05:30 -0500] "GET /AngularDemo/js/angular.min.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [26/Feb/2016:01:05:30 -0500] "GET /AngularDemo/html/element.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [26/Feb/2016:01:05:30 -0500] "GET /AngularDemo/html/temp2.html HTTP/1.1" 304 -

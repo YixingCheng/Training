@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Angular Demo 09</title>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-ui-router.min.js"></script>
+<script>
+	var app= angular.module("mainApp", ["ngRoute", "ui.router"]);
+	app.config(function($routeProvider) {
+		$routeProvider
+			.when("/page1", {
+				templateUrl: "html/page1.html",
+				controller: "firstCtrl"
+			})
+			.when("/page2/:name", {
+				templateUrl: "html/page2.html",
+				controller: "secondCtrl"
+			});
+	});
+	app.config(function($stateProvider) {
+		$stateProvider
+			.state("state1", {
+				url: "/page3",
+				templateUrl: "html/page3.html",
+				controller: function($scope) {
+					$scope.message = "This is page 3";
+				}
+			})
+			.state("state2", {
+				url: "/page4/:name",
+				templateUrl: "html/page4.html",
+				controller: function($scope, $stateParams) {
+					$scope.message = "This is page 4";
+					var param = $stateParams.name;
+					$scope.paramMsg = "Message with parameter " + param;
+				}
+			});
+	});
+	app.controller("mainCtrl", function($scope) {
+		$scope.data = 100;
+	});
+	app.controller("firstCtrl", function($scope) {
+		$scope.message = "This is a first page";
+	});
+	app.controller("secondCtrl", function($scope, $routeParams) {
+		$scope.message = "This is a second page";
+		var param = $routeParams.name;
+		$scope.paramMsg = "Message with parameter " + param;
+	});
+	
+	
+</script>
+<style>
+	h2{
+		color: green;
+	}
+</style>
+</head>
+<body ng-app= "mainApp">
+	<div ng-controller="mainCtrl">
+		<h1>Demo09: Angular Routing</h1>
+		<hr>
+		<p>Input data: <input type="number" ng-model="data" min="10" max="200"/></p>
+		<p>Data: {{data}}</p>
+		<h2>Use ngRoute</h2>
+		<ul>
+			<li><a href="#page1">Go to page 1</a></li>
+			<li><a href="#page2/Bob">Go to page 2</a></li>
+		</ul>
+		<div ng-view></div>
+		<hr>
+		<h2>Use UI-Router</h2>
+		<ul>
+			<li><a ui-sref="state1">Go to Page 3</a></li>
+			<li><a ui-sref="state2({name:'Steven'})">Go to Page 4</a></li>
+		</ul>
+		<div ui-view></div>
+	</div>	
+	
+	
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Angular Demo02</title>
+<script src="js/angular.min.js"></script>
+<script>
+	var app = angular.module("main", []);
+	app.controller("parentCtrl", function($scope) {
+		$scope.message = "Parent";
+		$scope.person = {
+			name: "Bruce"	
+		};
+	});
+	app.controller("childCtrl", function($scope){
+		
+	});
+	app.controller("mainCtrl", function($scope) {
+		$scope.itemList = ["Item1", "Item2", "Item3"];
+		$scope.message = "Parent";
+		$scope.person ={
+			name: "Bob"	
+		};
+	});
+</script>
+<style>
+	h2{
+		color: green
+	}
+	h3{
+		color: blue
+	}
+</style>
+</head>
+<body ng-app="main">
+<h1>Demo02: Parent Controller and Child Controller</h1>
+	<div ng-controller="parentCtrl">
+		<h2>Parent scope and Child scope</h2>
+		<input type="text" ng-model="message" /> <br />
+		<p>Parent Message: {{message}}</p>
+		<input type="text" ng-model="person.name" /> <br />
+		<p>Parent Person: {{person.name}}</p>
+		<div ng-controller="childCtrl">
+			<!-- <input type="text" ng-model="$parent.message" /> <br /> -->
+			<input type="text" ng-model="message" /> <br />
+			<p>Child Message: {{message}}</p>
+			<input type="text" ng-model="person.name" /> <br />
+			<p>Child Person: {{person.name}}</p>
+		</div>
+	</div>
+	<div ng-controller="mainCtrl">
+		<h2>Other directive(ng-repeat, ng-include, ng-view, ng-swithc) that create child scope</h2>
+		<input type="checkbox" ng-model="checked"/>
+		Select all
+		<ul>
+			<li ng-repeat="item in itemList">
+			<input type= "checkbox" ng-model="checked"/>
+			{{$index+1}}:{{item}}
+		</ul>
+		<h3>Outside block</h3>
+		<input type="text" ng-model="message"/>
+		<p>Parent Message: {{message}}</p>
+		<input type="text" ng-model="person.name"/>
+		<p>Parent Person: {{person.name}}</p>
+		<div ng-include="'html/temp1.html'">
+		</div>
+	</div>
+</body>
+</html>
+

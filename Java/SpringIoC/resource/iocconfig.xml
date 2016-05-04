@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> 
+	
+	<!-- simple setter injection -->
+	<bean id="user" class="com.mercury.beans.User" scope="prototype">
+		<property name="name" value="Mary"/>
+		<property name="age" value="70"/>
+	</bean>
+
+	<!-- constructor injection -->
+	<bean id="person" class="com.mercury.beans.Person">
+		<constructor-arg index="0" value="Bruce"/>
+		<constructor-arg index="1" value="Lee"/>
+		<constructor-arg index="2" value="30"/>
+	</bean>
+	
+	<!-- configure complex bean -->
+	<bean id="wr" class="com.mercury.beans.Wrapper">
+		<property name="user" ref="user"/>
+		<property name="p" ref="person"/>
+	</bean>
+	
+	<bean id="wr2" class="com.mercury.beans.Wrapper" autowire="byName"/>
+	<bean id="wr3" class="com.mercury.beans.Wrapper" autowire="byType"/>
+	
+	<bean id="mc" class="com.mercury.beans.MultiCollection">
+		<property name="list">
+			<list>
+				<value>Item1</value>
+				<value>Item2</value>
+			</list>
+		</property>
+		<property name="set">
+			<set>
+				<value>100</value>
+				<value>200</value>
+			</set>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="key1" value="100"/>
+				<entry key="key2" value="200"/>
+			</map>
+		</property>
+		<property name="properties">
+			<props>
+				<prop key="key3"> value3</prop>
+				<prop key="key4"> value4</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

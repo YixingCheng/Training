@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Angular Demo04</title>
+<script src="js/angular.min.js"></script>
+<script>
+	var app = angular.module("mainApp", []);
+	app.controller("mainCtrl", function($scope) {
+		$scope.x = 100;
+		$scope.name = "Alice";
+		$scope.person1 = {
+				firstName: "Bruce",
+				lastName: "Golden",
+		};
+		$scope.person2 = {
+				firstName: "John",
+				lastName: "Lee",
+		};
+		
+	});
+	app.directive("elementDir", function() {
+		return {
+			scope: true,
+			restrict: "E",
+			//template: "<b>This is an element directive</b>"
+			templateUrl:"html/element.html"
+		};
+	});
+	app.directive("attributeDir", function() {
+		return{
+			scope: true,
+			restrict: "A",
+			template: "<b> This is an attribute directive with attribute {{value}}</b>",
+			link: function(scope, element, attr){
+				scope.value = attr.attributeDir;
+			}
+		};
+	});
+	
+	app.directive("classDir", function() {
+		return{
+			scope: true,
+			restrict: "C",
+			template: "<b>This is a class directive with class {{value}}</b>",
+			link: function(scope, element, attr) {
+				scope.value = attr.classDir;
+			}
+		};
+	});
+	app.directive("isolateDir", function() {
+		return {
+			scope: {},
+			restrict: "E",
+			template: "<b> Isolated Value: {{name}} </b>",
+			link: function(scope, element, attr) {
+				scope.name = "Bob";
+			}
+		};
+	});
+	app.directive("personDir", function() {
+		return{
+			scope:{
+				customerInfo: "=info"
+			},
+			restrict: "E",
+			templateUrl: "html/temp2.html",
+		};
+	});
+</script>
+<style>
+	h2{
+		color: green;
+	}
+</style>
+</head>
+<body ng-app="mainApp">
+	<h1>Demo04: Custom Directive</h1>
+	<hr>
+	<div ng-controller="mainCtrl">
+		<h2>Element Directive</h2>
+		<element-dir></element-dir>
+		<h2>Attribute Directive</h2>
+		<p attribute-dir="myattr"></p>
+		<h2>Class Directive</h2>
+		<p class="class-dir: myclass"></p>
+		<hr>
+		<h2>Isolated Scope in custom directive</h2>
+		<isolate-dir></isolate-dir>
+		<hr>
+		<div>
+			<h2>Isolated scope with parameters</h2>
+			<person-dir info="person1"></person-dir>
+		</div>
+	</div>
+</body>
+</html>

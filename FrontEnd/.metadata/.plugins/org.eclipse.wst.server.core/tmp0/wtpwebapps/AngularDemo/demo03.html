@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Angular Demo03</title>
+<script src="js/angular.min.js"></script>
+<script>
+	var app = angular.module("mainApp", []);
+	app.controller("firstCtrl", function($scope) {
+		$scope.x= 10;
+		$scope.$watch("x", function(newVal, oldVal) {
+			console.log(newVal, oldVal);
+		});
+		$scope.$on("changeMsg", function(event, val) {
+			console.log("Receiving value: " + val);
+			$scope.$broadcast("broadcastMsg", val);
+		});
+		
+	});
+	app.controller("ctrl01", function($scope) {
+		$scope.message = "Message from ctrl01";
+		$scope.$watch("message", function(newVal, oldVal) {
+			//console.log(newVal, oldVal);
+			$scope.$emit("changeMsg", newVal);
+		}); 
+		
+	});
+	
+	app.controller("ctrl02", function($scope) {
+		$scope.value = 0;
+		$scope.$on("broadcastMsg", function(event, val) {
+			$scope.value= val.length;
+		});
+	});
+	
+	
+</script>
+<style>
+	h2{
+		color:green;
+	}
+</style>
+</head>
+<body ng-app="mainApp">
+	<h1>Demo03: Talk between two controllers</h1>
+	<div ng-controller="firstCtrl">
+		<h2>Test watch</h2>
+		<p>Number: <input type="number" ng-model="x" min="1" max="20"/></p>
+		<p>Current value: {{x}}</p>
+		<div ng-controller="ctrl01">
+			<p>
+				Message: <input type="text" ng-model="message" />
+			</p>
+			<p>Input Message:{{message}}</p>
+		</div>
+		<div ng-controller="ctrl02">
+			<p>Length of message: {{value}}</p>
+		</div>
+	</div>
+	
+</body>
+</html>

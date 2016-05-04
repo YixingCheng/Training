@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Demo01</title>
+<script src="js/qunit-1.20.0.js"></script>
+<link rel="stylesheet" href="css/qunit-1.20.0.css" type="text/css">
+<script>
+    var first = {};
+    first.name = "First";
+    first.hello = function(){
+        return "hello";
+    };
+    
+    test("Test naming space", function(){
+        equal("First", first.name, "first's name is First");
+        equal("hello", first.hello(), "first's hello method returns hello");     
+    });
+
+    var getFunc = function(){
+        var name = "Alice";
+        var sayHello = function(){           //closure: A function inside
+            return "Hello " + name;
+        }
+        return sayHello;
+    };
+
+    var myCount = (function(){
+        var count = 0;
+        return {                            //count does not belong to this object
+            getCount: function(){
+                return count;
+            },
+            setCount: function(anotherCount){
+                count = anotherCount;
+            },
+            increase: function(){
+                count++;
+            }
+        };   
+    })();
+
+    test("Test closure and module pattern", function(){
+        var hello = getFunc();
+        equal("Hello Alice", hello(), "hello is a function");
+        equal(0, myCount.getCount(), "count is 0");
+        myCount.increase();
+        equal(1, myCount.getCount(), "count is 1");
+        myCount.setCount(5);
+        equal(5, myCount.getCount(), "count is 5");
+        myCount.increase();
+        equal(6, myCount.getCount(), "count is 6");
+
+            
+    });
+
+    var enhance = function(obj){
+        var count = 0;
+        obj.getCount = function(){
+            return count;
+        };
+        obj.setCount = function(anotherCount){
+            count = anotherCount;
+        };
+        obj.increase = function(){
+            count++;
+        }
+    };
+
+    var second = {
+        name: "Second",
+        count: 100
+    };
+
+    test("Test dynamic naming space", function(){
+        enhance(second);
+        equal(0, second.getCount(), "count is 0");
+        second.increase();     
+        equal(1, second.getCount(), "count is 1");
+        second.setCount(5);
+        equal(5, second.getCount(), "count is 5");
+        second.increase();
+        equal(6, second.getCount(), "count is 6");
+        equal("Second", second.name, "second's name is still second");
+        equal(100, second.count, "second's count is 100");
+    });
+
+</script>
+</head>
+<body>
+<h1 id="qunit-header">Qunit Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+</body>
+</html>

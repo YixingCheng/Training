@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="js/jquery-1.12.0.min.js"></script>
+<script>
+	var jq = jQuery.noConflict();
+	var temp;
+	jq(document).ready(function($) {      //dynamic naming spacing
+		$("#append").click(function() {
+			var row = "<li>Meat</li>";
+			$("#list").append(row);
+			$(row).appendTo("#list");
+		});
+		$("#prepend").click(function() {
+			var row = "<li>Drink</li>";
+			$("#list").prepend(row);
+			$(row).prependTo("#list");
+		});
+		$("#insertBefore").click(function() {
+			var row = "<h2>Another Line</h2>";
+			$(row).insertBefore("#list");
+			$("#list").before(row);
+		});
+		$("#insertAfter").click(function() {
+			var row = "<h2>Another Line</h2>";
+			$(row).insertAfter("#list");
+			$("#list").after(row);
+		});
+		$("#remove").click(function() {
+			$("#list").remove();
+		});
+		$("#detach").click(function() {
+			if (temp) {
+				$("h1").after(temp);
+				temp = null;
+			} else{
+				temp = $("#list").detach();
+			}
+		});
+		$("#empty").click(function() {
+			$("#list").empty();
+		});
+	});
+</script>
+<style>
+
+</style>
+</head>
+<body>
+<h1>Add and Remove Element</h1>
+<ul id="list">
+	<li>Water</li>
+	<li>Milk</li>
+	<li>Coffee</li>
+</ul>
+<div>
+	<button id="append">Append</button>
+	<button id="prepend">Prepend</button>
+</div>
+<div>
+	<button id="insertBefore">Insert Before</button>
+	<button id="insertAfter">Insert After</button>
+</div>
+<div>
+	<button id="remove">Remove</button>
+	<button id="detach">Detach</button>
+	<button id="empty">Empty</button>
+</div>
+</body>
+</html>

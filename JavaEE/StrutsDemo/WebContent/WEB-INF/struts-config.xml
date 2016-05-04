@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+    <form-beans>
+        <form-bean name="userForm" type="com.mercury.beans.User"/>
+    </form-beans>
+    <action-mappings>
+        <action name="userForm" path="/hello" type="com.mercury.actions.HelloAction" 
+            scope="request" input="/hello.jsp">
+            <forward name="result" path="/result.jsp" />
+        </action>
+    </action-mappings>
+    <message-resources parameter="com.mercury.message.ApplicationResources"></message-resources>
+</struts-config>

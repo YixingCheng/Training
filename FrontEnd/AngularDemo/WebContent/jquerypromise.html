@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JQuery promise demo</title>
+<script src="js/jquery-1.12.0.min.js"></script> 
+<script>
+	$(document).ready(function() {
+		$("#cal1").on("click", function() {
+			var params = {};
+			params.x = $("#x").val();
+			params.y = $("#y").val();
+			var result;
+			$.ajax({
+				url: "multiply",
+				type: "get",
+				data: params,
+				dataType: "html",
+				success: function(resp) {
+					console.log(resp);
+					result = resp;
+					$.ajax({
+						url: "add",
+						type: "get",
+						data: params,
+						dataType: "html",
+						success: function(resp) {
+							console.log(resp);
+							result = result/resp;
+							$("#result").html(result);
+						}
+					})
+				}
+			});
+		});
+		
+		$("#cal2").on("click", function() {
+			var params = {};
+			params.x = $("#x").val();
+			params.y = $("#y").val();
+			$.when(
+				$.get({
+					url: "multiply",
+					data: params
+				}),
+				$.get({
+					url: "add",
+					data: params
+				})
+			).done(function(d1, d2) {
+				console.log(d1);
+				console.log(d2);
+				$("#result").html(d1[0]/d2[0]);
+			});
+		});
+	});
+</script>
+</head>
+<body>
+<h1>jQuery Promise Demo</h1>
+<hr>
+<div>
+	<table>
+		<tr>
+			<td>Input x:</td>
+			<td><input type="text" id="x"/></td>
+		</tr>
+		<tr>
+			<td>Input y:</td>
+			<td><input type="text" id="y"/></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<button id="cal1">Calculate1</button>
+				<button id="cal2">Calculate2</button>
+			</td>
+			
+		</tr>
+	</table>
+	<p>result: <b id="result"></b></p>
+</div>
+</body>
+</html>

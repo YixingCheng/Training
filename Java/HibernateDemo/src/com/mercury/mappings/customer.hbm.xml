@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+<hibernate-mapping>     
+    <class name="com.mercury.beans.Customer" table="Customer">  
+         <cache usage="read-write"/>
+        <id name="CID" column="CID">
+        	<generator class="increment"/>
+        </id> 
+        <property name="name" column="Name"/>
+         <set name="emails" table="Email" fetch="join">
+    		<key column="cid" foreign-key="CID"/>
+    		<element type="java.lang.String" column="Address"/>
+    	 </set>
+    </class> 
+   
+    <!-- 
+    <sql-query name="userQuery">
+    	<![CDATA[
+    		select * from Sample where Age>:age
+    	]]>
+    	<return alias="user" class="com.mercury.beans.User"/>
+    </sql-query>
+    <sql-query name="userSP" callable="true">
+    	<![CDATA[
+    		{?=call queryUser()}
+    	]]>
+    	<return alias="user" class="com.mercury.beans.User"/>
+    </sql-query>
+     -->
+    
+    
+    
+</hibernate-mapping>

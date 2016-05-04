@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="js/jquery-1.12.0.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#para").on("modify", function() {
+			console.log("The paragraph is modified");
+			$(this).text("The paragraph is changed");
+		});
+		$("#mybtn").click(function() {
+			$("#para").trigger("modify");
+		});
+		
+		
+		$("#update").click(function() {
+			var items = $("h2");
+			console.log("There are " + items.length + " h2");
+			//use eq to get a jquery object
+			items.eq(0).html("First line is changed");
+			//use get method to get a DOM object
+			items.get(1).innerHTML = "Second line is changed";
+			//use array index to get a DOM object;
+			items[2].innerHTML = "Third line is changed";
+			var item1 = items.get(1);
+			var item2 = items[1];
+			console.log("item1==item2? " + (item1 == item2));
+			var item3 = items.eq(0);
+			var item4 = items.eq(0);
+			console.log("item3==item4? " + (item3 == item4));
+			
+		})
+	});
+</script>
+</head>
+<body>
+	<h1>Define Custoized Events</h1>
+	<p id="para"> This is a paragraph</p>
+	<button id="mybtn">Click Me</button>
+	<hr>
+	<h1>Difference between jQuey object and DOM object</h1>
+	<h2>First HyperText</h2>
+	<h2>Second HyperText</h2>
+	<h2>Third HyperText</h2>
+	<button id="update">Update</button>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Demo06</title>
+<script src="js/jquery-1.12.0.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#hide").click(function() {
+			$("#para").hide(3000, function() {
+				console.log("Callback function is invoked after para is hidden");
+				
+			});
+			//console.log("Finished");
+			$("#para").promise().done(function() {
+				console.log("Finished");
+			});
+		});
+		$("#show").click(function() {
+			$("#para").show(3000, function() {
+				console.log("Callback function is invodked after para is showin");
+			});
+			$("#para").promise().done(function() {
+				console.log("promise on show.");
+			});
+			
+		});
+		
+		$("#hideTwo").click(function() {
+			/*$("#first").hide(3000, function() {
+				console.log("first is hidden");
+				$("#second").hide(3000, function() {
+					console.log("second is hidden");
+				});
+			});  */
+			
+			/*$("#first").hide(3000);
+			$("#first").promise().done(function() {
+				console.log("first is hidden");
+				$("#second").hide(3000);
+			});
+			$("#second").promise().done(function() {
+				console.log("second is hidden");
+			});   */
+			$.when(
+				$("#first").hide(3000),
+				$("#second").hide(3000)
+			).done(function() {
+				console.log("first is hidden.");
+				console.log("second is hidden");
+			});
+			
+			
+			
+		})
+		
+		//$("#showTwo").click(function() {
+		//	$.when(
+		//			$("#first").show(3000),
+		//			$("#second").show(3000)
+		//		).done(function(){
+		//			console.log("first is shown.");
+		//			console.log("second is shown.");
+		//		});
+		//})
+		
+		$("#showTwo").on("click", function() {
+			$.when(
+					$("#first").show(3000),
+					$("#second").show(3000)
+				).done(function(){
+					console.log("first is shown.");
+					console.log("second is shown.");
+				});
+		});
+		
+		$("#para").on("click", function() {
+			$.when(
+					$
+				).done(function() {
+					
+				});
+		})
+		
+		
+		$("#btn").on("click", function() {
+			$("p#ready").append( "Started..." );
+			$("div.c1").each(function(i) {
+				$(this).fadeIn().fadeOut(1000*(i+1));
+				
+			});
+			//$("p#ready").append("Finished!");
+			$("div.c1").promise().done(function() {
+				$("p#ready").append(" Finished! ");
+				
+			});
+		});
+	});
+</script>
+<style>
+	div {
+		height: 50px;
+		width: 50px;
+		float: left;
+		margin-right: 10px;
+		display: none;         /*   not even showing, won't occupy space  */
+		/* visibility: hidden; */    /*   occupy space, but won't have event */
+		/* opacity: 0; */					/*   occupy space, but can have event */
+		background-color: #090;
+	}
+</style>
+</head>
+<body>
+	<h1>Callback Functions</h1>
+	<p id="para"> This is a paragraph</p>
+	<button id="hide">Hide the paragraph</button>
+	<button id="show">Show the paragraph</button>
+	<hr>
+	<h2 id="first">First hypertext</h2>
+	<h2 id="second">Second hypertext</h2>
+	<button id="hideTwo">Hide Two</button>
+	<button id="showTwo">Show Two</button>
+	<hr>
+	<h1>JQuery Promise</h1>
+	<button id="btn">Go</button>
+	<p id="ready">Ready...</p>
+
+		<div onclick="alert('ok');" class="c1"></div>
+		<div class="c1"></div>
+		<div class="c1"></div>
+		<div class="c1"></div>
+
+	
+	<h2>End of page</h2>
+</body>
+</html>

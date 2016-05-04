@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Angular Demo05</title>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-sanitize.min.js"></script>
+<script>
+	//var app = angular.module("mainApp", ["ngSanitize"]);
+	var app = angular.module("mainApp", []);
+	app.controller("mainCtrl", function($scope, $sce) {
+		
+		$scope.htmlMsg = "<b>This is bold text</b>";
+		$scope.secureMsg = $sce.trustAsHtml($scope.htmlMsg);
+		
+	});
+	app.filter("secureFilter", function($sce) {
+		return function(inputHtml) {
+			return $sce.trustAsHtml(inputHtml);
+		};
+	})
+</script>
+<style>
+	h2{
+		color: green;
+	}
+</style>
+</head>
+<body ng-app="mainApp">
+<h1>Demo05: Bind HTML message</h1>
+
+<hr>
+<div ng-controller="mainCtrl">
+	<h2>Bind HTML message directly</h2>
+	<p>HTML Message: {{htmlMsg}}</p>
+	<P>HTML Message by ng-bind-html: <span ng-bind-html="secureMsg"></span></P>
+	<h2>Bind HTML message using Filter</h2>
+	<p>HTML Message: {{htmlMsg}}</p>
+	<p>HTML Message by Filter: <span ng-bind-html="htmlMsg | secureFilter"></span></p>
+</div>
+
+
+</body>
+</html>

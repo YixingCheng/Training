@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="js/jquery-1.12.0.min.js"></script>
+<script>
+	$(document).ready(function() {
+		console.log("All DOM elements are loaded");
+		$("#parent").click(function() {
+			console.log("Find parent");
+			var child = $("div.child");			//starting from child
+			console.log("Parent: " + $(child).parent().attr("class"));
+			console.log("Find all parents");
+			var items = $(child).parents();
+			
+			$(items).each(function(i, item){
+				console.log($(item).attr("class"));
+			});
+	
+			console.log("Find all parents until some level");
+			items = $(child).parentsUntil("body");
+			$(items).each(function(i, item) {
+				console.log($(item).attr("class"));
+			});
+			console.log("Closest div from grandchild is: " + $("span.grandchild").closest("div").attr("class"));
+			console.log("Closest div from child is: " + $("div.child").closest("div").attr("class"));
+		});
+		$("#child").click(function() {
+			var gp = $("div.grandparent");
+			console.log("Use children to find all children");
+			var items = gp.children("div");
+			$(items).each(function(i, item) {
+				console.log($(item).attr("class"));
+			});
+			console.log("User find to find all children");
+			var items = gp.find("div");
+			$(items).each(function(i, item) {
+				console.log($(item).attr("class"));
+			});
+		});
+	});
+	function afterLoad() {
+		console.log("Everything is loaded!");
+	}
+</script>
+</head>
+<body onload="afterLoad()">
+<h1>Find Parent and Child Elements</h1>
+<div class="grandparent">
+	<div class="parent">
+		<div class="child">
+			<span class="grandchild"></span>
+		</div>
+	
+	</div>
+	<div class="uncle"></div>
+	<div class="aunt"></div>
+</div>
+<div>
+	<button id="parent">Find Parent</button>
+	<button id="child">Find Child</button>
+</div>
+</body>
+</html>

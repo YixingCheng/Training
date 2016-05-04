@@ -1,0 +1,5 @@
+package com.mercury.client;
+
+public class HelloClient {
+
+}

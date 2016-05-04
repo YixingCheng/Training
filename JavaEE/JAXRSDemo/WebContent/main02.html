@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Main Demo 2</title>
+<script src="js/angular.min.js"></script>
+<script>
+	var app=angular.module("mainApp", []);
+	app.controller("mainCtrl", function($scope, $http) {
+		$scope.person={
+						firstName: null,
+						lastName: null,
+						age: null,
+					}
+		$scope.person2={
+				firstName: null,
+				lastName: null,
+				age: null,
+			}
+		$scope.getPerson = function(){
+			$http.get("rest/hello")
+			.success(function(data){
+				console.log(data);
+				$scope.person = data;
+			})
+		};
+		$scope.getPerson2 = function(){
+			$http.post("rest/hello")
+			.success(function(data){
+				console.log(data);
+				$scope.person2 = data;
+			})
+		};
+	});
+	
+</script>
+</head>
+<body ng-app="mainApp" ng-controller="mainCtrl">
+<h1>JAX-RS Demo with Angular JS</h1>
+<hr>
+<div>
+	<button ng-click="getPerson()">Get Person in GET</button>
+	<p>First Name: {{person.firstName}}</p>
+	<p>Last Name: {{person.lastName}}</p>
+	<p>Age: {{person.age}}</p>
+</div>
+<hr>
+<div>
+	<button ng-click="getPerson2()">Get Person in POST</button>
+	<p>First Name: {{person2.firstName}}</p>
+	<p>Last Name: {{person2.lastName}}</p>
+	<p>Age: {{person2.age}}</p>
+</div>
+</body>
+</html>

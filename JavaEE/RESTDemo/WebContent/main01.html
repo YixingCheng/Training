@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Main Page</title>
+<script src="js/jquery-1.12.0.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#submit").on("click", function(){
+			/*var params = $("input").serialize();
+			$.ajax({
+				type: "get",
+				url: "rest/hello",
+				dataType: "json",
+				data: params,
+				success: function(data) {
+					console.log(data);
+					$("#welcome").html(data.msg);
+					$("#userList").empty;
+					$(data.user).each(function(i,item){
+						var name = item.name;
+						var age = item.age;
+						var row = "<tr><td>" + name + "</td><td>" + age + "</td></tr>";
+						$("#userList").append(row);
+						$("#result").show();
+					})
+				}
+			})
+			
+		});
+		*/
+			var link= "rest/hello" + $("#name").val() + "/" + $("#age").val();
+			$.ajax({
+				type: "get",
+				url: link,
+				dataType: "json",
+				data: params,
+				success: function(data) {
+					console.log(data);
+					$("#welcome").html(data.msg);
+					$("#userList").empty;
+					$(data.user).each(function(i,item){
+						var name = item.name;
+						var age = item.age;
+						var row = "<tr><td>" + name + "</td><td>" + age + "</td></tr>";
+						$("#userList").append(row);
+						$("#result").show();
+					})
+				}
+			})
+			
+		});
+		
+	});
+	
+</script>
+</head>
+<style>
+	h1 {
+		color:red;
+		test-shadow: 5px 5px 5px orange;
+	}
+</style>
+<body>
+<h1>SpringREST + JAX-RX</h1>
+	<table>
+		<tr>
+			<td>Name:</td>
+			<td><input type="text" name="name" placeholder="Your Name"
+				id="name" /></td>
+
+		</tr>
+		<tr>
+			<td>Age:</td>
+			<td><input type="text" name="age" placeholder="Your Age"
+				id="age" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<button id="clear" class="round">Clear</button>
+				<button id="submit" class="round">Submit</button>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<div id="result" style="display:none">
+		<h2 id="welcome"></h2>
+		<table style="width:200px" border="1">
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+			</tr>
+			<tbody id="userList"></tbody>
+		</table>
+	</div>
+</body>
+</html>

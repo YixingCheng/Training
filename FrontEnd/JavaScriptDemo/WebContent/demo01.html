@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Demo01</title>
+<script src="js/qunit-1.20.0.js"></script>
+<link rel="stylesheet" href="css/qunit-1.20.0.css" type="text/css">
+<script>
+    test("Test false values", function(){
+         ok(false==0, "false==0");
+         ok(false=='', "false==''");
+         ok(0=='', "0==''");
+         ok(null==undefined, "null==undefined");
+         ok(null!=false, "null!=false");
+         ok(undefined!=false, "undefined!=false");
+         ok(NaN!=false, "NaN!=false");
+         ok(NaN!=NaN, "NaN!=NaN");
+         ok(NaN!='', "NaN!=''")
+        });
+    test("Test keyword: typeof", function(){
+        //Primitive types: string, number, boolean, undefined, null
+        equal("string", typeof 'abc', "typeof 'abc' is string");
+        equal("number", typeof 100, "typeof 100 is number");
+        equal("boolean", typeof true, "typeof true is boolean");
+        equal("undefined", typeof undefined, "typeof undefined is undefined");
+        equal("object", typeof null, "typeof null is object");
+        equal("object", typeof [1,2,3], "typeof [1,2,3] is object");
+        equal("object", typeof {}, "typeof {} is object");
+        });
+    test("Test keyword instanceof", function(){
+        var x= 'abc';
+        ok(!(x instanceof String), "x is not an instance of String");
+        x = new String('abc');
+        ok(x instanceof String, "x is an instance of String");
+        var y = {};
+        ok(y instanceof Object, "y is an instance of Object");
+        var z = [1,2,3];
+        ok(z instanceof Object, "z is an instance of Object");
+        });
+</script>
+</head>
+<body>
+<h1 id="qunit-header">Qunit Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+</body>
+</html>

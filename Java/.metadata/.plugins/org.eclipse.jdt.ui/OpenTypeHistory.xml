@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=JavaBasic/src&lt;com.mercury.code{Person.java[Person" modifiers="17" timestamp="1454691184590"/>
+<typeInfo handle="=JavaBasic/src&lt;com.mercury.code{WrappedString.java[WrappedString" modifiers="1" timestamp="1455035222874"/>
+<typeInfo handle="=JavaBasic/C:\/Program Files \(x86)\/Java\/jre1.8.0_60\/lib\/rt.jar&lt;java.io(Externalizable.class[Externalizable" modifiers="1537" timestamp="1454357920211"/>
+<typeInfo handle="=SpringIoC/src&lt;com.mercury.beans{Address.java[Address" modifiers="1" timestamp="1456848923995"/>
+<typeInfo handle="=SpringAOP/src&lt;com.mercury.beans{TimeBookInterface.java[TimeBookInterface" modifiers="513" timestamp="1456936080466"/>
+<typeInfo handle="=SpringAOP/C:\/OpenSource\/JarFiles\/Spring3.1\/Other\/aopalliance\/aopalliance.jar&lt;org.aopalliance.intercept(MethodInterceptor.class[MethodInterceptor" modifiers="1537" timestamp="1240274562000"/>
+<typeInfo handle="=SpringJdbc/C:\/OpenSource\/JarFiles\/Spring3.1\/DataAccess\/org.springframework.jdbc-3.1.0.M1.jar&lt;org.springframework.jdbc.core.support(JdbcDaoSupport.class[JdbcDaoSupport" modifiers="1057" timestamp="1297417048000"/>
+<typeInfo handle="=SpringJdbc/src&lt;com.mercury.dao{HelloDao.java[HelloDao" modifiers="513" timestamp="1456948741784"/>
+<typeInfo handle="=SpringHibernate/src&lt;com.mercury.dao{HelloDao.java[HelloDao" modifiers="513" timestamp="1456948741784"/>
+<typeInfo handle="=JavaBasic/src&lt;com.mercury.code{PrivateConstructor.java[PrivateConstructor" modifiers="1025" timestamp="1460991887672"/>
+<typeInfo handle="=JavaBasic/src&lt;com.mercury.code{Cattle.java[Cattle" modifiers="1" timestamp="1460999113795"/>
+<typeInfo handle="=JavaBasic/src&lt;com.mercury.code{Mammal.java[Mammal" modifiers="1" timestamp="1460999121676"/>
+<typeInfo handle="=JavaBasic/src&lt;com.mercury.code{Base.java[Base" modifiers="1" timestamp="1461080756850"/>
+</typeInfoHistroy>

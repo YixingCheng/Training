@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Main Page1</title>
+<script src="js/jquery-1.12.0.min.js"></script>
+<script>
+ 	$(document).ready(function() {
+ 		$("#btn").on("click", function() {
+ 			$.ajax({
+ 				url: "rest/hello",
+ 				type: "get",
+ 				dataType: "xml",
+ 				success: function(data) {
+ 					console.log(data);
+ 					var firstName = $(data).find("firstName").text();
+ 					var lastName= $(data).find("lastName").text();
+ 					var age = $(data).find("age").text();
+ 					$("#firstName").text(firstName);
+ 					$("#lastName").text(lastName);
+ 					$("#age").text(age);
+ 				}
+ 			});
+ 		});
+ 		$("#btn2").on("click", function() {
+ 			$.ajax({
+ 				url: "rest/hello",
+ 				type: "post",
+ 				dataType: "json",
+ 				success: function(data) {
+ 					console.log(data);
+ 					$("#firstName2").text(data.firstName);
+ 					$("#lastName2").text(data.lastName);
+ 					$("#age2").text(data.age);
+ 				}
+ 			});
+ 		});
+ 	})
+</script>
+</head>
+<body>
+<h1>JAX-RS Demo with jQuery</h1>
+<hr>
+<div>
+	<button id="btn">Get Person</button>
+	<p>First Name: <b id="firstName"></b></p>
+	<p>Last Name: <b id="lastName"></b></p>
+	<p>Age: <b id="age"></b></p>
+</div>
+<hr>
+<div>
+	<button id="btn2">Get Person in JSON</button>
+	<p>First Name: <b id="firstName2"></b></p>
+	<p>Last Name: <b id="lastName2"></b></p>
+	<p>Age: <b id="age2"></b></p>
+</div>
+</body>
+</html>

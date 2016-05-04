@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+<hibernate-mapping>     
+    <class name="com.mercury.beans.People" table="person">  
+         <cache usage="read-write"/>
+         <composite-id>
+         	<key-property name="lastName" column="lastName" />
+			<key-property name="firstName" column="firstName" />
+		 </composite-id>
+         <!-- <id name="name" column="Name"></id>  -->
+         <property name="age" column="age"/>
+    </class> 
+    
+    <!-- 
+    <sql-query name="userQuery">
+    	<![CDATA[
+    		select * from Sample where Age>:age
+    	]]>
+    	<return alias="user" class="com.mercury.beans.User"/>
+    </sql-query>
+    <sql-query name="userSP" callable="true">
+    	<![CDATA[
+    		{?=call queryUser()}
+    	]]>
+    	<return alias="user" class="com.mercury.beans.User"/>
+    </sql-query>
+     -->
+    
+</hibernate-mapping>

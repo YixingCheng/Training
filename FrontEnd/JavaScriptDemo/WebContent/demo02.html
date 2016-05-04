@@ -1,0 +1,91 @@
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Demo01</title>
+<script src="js/qunit-1.20.0.js"></script>
+<link rel="stylesheet" href="css/qunit-1.20.0.css" type="text/css">
+<script>
+    var myName = "Alice";
+    var getName1 = function(){
+        return myName;
+    };
+    var getName2 = function(){
+        return this.myName;     //this means Window
+    };
+    
+    var People = function(first, last, age){
+    	this.first = first;
+    	this.last = last;
+    	this.age = age;
+    	this.fullName = function(){
+    		return this.first + " " + this.last;
+    	}
+    }
+    
+    var PeopleObj = {
+    	first: "Ethan",
+    	last: "Cheng",
+    	fullName: function(){
+    		return first + " " + last;
+    	}
+    }
+    
+    console.log(PeopleObje.fullName());
+    
+    test("Test keyword this", function(){
+       equal("Alice", getName1(), "getName1 returns Alice as a global variable");
+       equal("Alice", getName2(), "getName2 returns Alice as a window's variable");
+       equal("Alice", window.myName, "Any gloable variable belongs to windows");
+       var person={
+            myName: "Bob",
+            getName: getName2
+       };
+       equal("Bob", person.getName(), "Now this is person and this.myName is Bob");  //The value of this, when used in a function, is the object that "owns" the function.
+    });
+    
+    //javascript constructor
+    var Person = function(name, age){
+        this.name = name;
+        this.age = age;
+        this.getName = function(){
+            return this.name;
+        }
+    };
+
+    test("Test constructor", function(){
+        var p = new Person("Alice", 50);
+        equal("Alice", p.name, "p's name is Alice");
+        equal(50, p.age, "p's age is 50");
+        equal("Alice", p.getName(), "getName method returns Alice");
+        p.salary = 1000;
+        equal(1000, p.salary, "p's salary is 1000, an additional field");
+        var q = new Person("Bob", 70);
+        equal("Bob", q.name, "q's name is Bob");
+        equal(70, q.age, "q's age is 70");
+        equal(q.salary, undefined, "q's salary is undefinied");
+        //Person.prototype.salary = 2000;
+        //Person.prototy= function(){
+        //    return "hello";
+        //};
+     	Object.prototype.salary = 2000;
+     	Object.prototype.hello= function(){
+     		return "hello";
+     	}
+        equal(q.salary, 2000, "q's salary is 2000");
+        equal(p.salary, 1000, "p's salary is 1000");
+        delete p.salary;
+        equal(p.salary, 2000, "p's salary is 2000");
+        equal("hello", q.hello(), "q can call hello method");
+        equal("hello", p.hello(), "p can call hello method");
+    });
+
+</script>
+</head>
+<body>
+<h1 id="qunit-header">Qunit Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+</body>
+</html>

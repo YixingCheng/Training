@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>SpringREST + Angular</title>
+<script src="js/angular.min.js"></script>
+<script>
+	var app = angular.module("mainApp", []);
+	
+	app.controller("mainCtrl", function($scope, $http) {
+		console.log("hello");
+		$scope.users = {};
+		$scope.user ={
+			name: null,
+			age: null,
+		};
+		$scope.saveUser = function(){
+			console.log("in saveUser");
+			console.log($scope.user);
+			$http.get("rest/hello", {name: $scope.user})
+			.success(function(resp){
+				$scope.users=resp.users;
+			})
+			/*
+			http.get("rest/hello", {params: $scope.user})
+			.then(function(resp) {
+				$scope.user = resp.data.user;
+			})
+			*/
+		};
+		
+	});
+</script>
+</head>
+<body ng-app="mainApp" ng-controller="mainCtrl">
+<h1>SpringREST + Angular</h1>
+	<table>
+		<tr>
+			<td>Name:</td>
+			<td><input type="text" name="name" placeholder="Your Name"
+				id="name" ng-model="user.name"/></td>
+
+		</tr>
+		<tr>
+			<td>Age:</td>
+			<td><input type="text" name="age" placeholder="Your Age"
+				id="age" ng-model="user.age"/></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<button id="clear" class="round">Clear</button>
+				<button id="submit" class="round" ng-click="saveUser()">Submit</button>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<div id="result">
+		<h2 id="welcome"></h2>
+		<table style="width:200px" border="1">
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+			</tr>
+			<tr ng-repeat="user in users">
+						<td>{{user.name}}</td>
+						<td>{{user.age}}</td>
+						
+			</tr>
+			<tbody id="userList"></tbody>
+		</table>
+	</div>
+</body>
+</html>

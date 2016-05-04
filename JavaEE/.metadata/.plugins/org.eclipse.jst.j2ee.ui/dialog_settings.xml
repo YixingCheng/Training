@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="false" key="J2EE_EXPORT_OVERWRITE"/>
+	<item value="false" key="J2EE_EXPORT_SOURCE"/>
+	<list key="J2EE_IMPORT_null">
+		<item value="C:\Users\Ethan\Downloads\Mercury\Demos\Eclipse3.7\RealProject\Demand.war"/>
+		<item value="C:\Users\Ethan\Downloads\Mercury\Demos\Eclipse_mars\Live\Demand.war"/>
+		<item value="C:\Users\Ethan\Downloads\Mercury\Demos\Eclipse_mars\Live\MarketData02.war"/>
+		<item value="C:\Users\Ethan\Downloads\Mercury\Demos\Eclipse_mars\Live\MarketData01.war"/>
+	</list>
+	<list key="MRU_RUNTIME_STORE">
+		<item value="Apache Tomcat v7.0"/>
+	</list>
+	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="C:\Users\Ethan\Desktop\Struts2Demo.war"/>
+	</list>
+</section>
